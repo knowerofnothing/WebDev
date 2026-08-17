@@ -22,22 +22,10 @@
                     Send
                 </button>
             </>
-        )
+        );
     }
 
     function ChatMessage({message, sender}) {
-        //const message = props.message;
-        //const sender = props.sender;
-        //const{message, sender} = props;
-
-        // if (sender === 'robot'){
-        //     return (
-        //         <div>
-        //             <img src="robot.png" alt="User's profile picture" width="50" />
-        //             {message}
-        //         </div>
-        //     );
-        // }
         return (
             <div>
                 {sender === 'robot' && (
@@ -56,34 +44,60 @@
                     />
                 )}
             </div>
-        )
+        );
     }
-function App() {
-    return(
-        <>
-            <ChatInput/>
-            <ChatMessage
-                message="Hello Chatbot"
-                sender="user"
-            />
-            <ChatMessage
-                message="Hello how can I help you!"
-                sender="robot"
-            />
-            <ChatMessage
-                message="can you get me todays date?"
-                sender="user"
-            />
-            <ChatMessage
-                message="Today is September 27"
-                sender="robot"
-            />
 
-        </>
-    );
-}
+    function ChatMessages() {
+        const chatMessage = [{
+            message: 'hello chatbot',
+            sender: 'user',
+            id: 'id1'
+        }, {
+            message: 'Hello how can I help you!',
+            sender: 'robot',
+            id: 'id2'
+        }, {
+            message: 'can you get me todays date?',
+            sender: 'user',
+            id: 'id3'
+        }, {
+            message: 'today is September 27',
+            sender: 'robot',
+            id: 'id4'
+
+        }];
+        return (
+            <>
+                {chatMessage.map((chatMessage) => {
+                    return (
+                        <ChatMessage
+                            message={chatMessage.message}
+                            sender={chatMessage.sender}
+                            key={chatMessage.id}
+                        />
+                    );
+                })}
+            </>
+        );
+
+
+    }
+
+
+    function App() {
+
+        return (
+            <>
+                <ChatInput/>
+                <ChatMessages/>
+
+
+            </>
+        );
+    }
+
     const container = document.querySelector('.js-container');
-    ReactDOM.createRoot(container).render(<App />);
+    ReactDOM.createRoot(container).render(<App/>);
 </script>
 
 
